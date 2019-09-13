@@ -1,0 +1,49 @@
+{
+  "name": "meetup-random",
+  "version": "0.0.1",
+  "description": "Randomly select people for Meetup.com meetings.",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "castilh0s/meetup-random",
+  "bugs": {
+    "url": "https://github.com/castilh0s/meetup-random/issues"
+  },
+  "homepage": "https://github.com/castilh0s/meetup-random",
+  "author": {
+    "name": "Henrique de Castilhos",
+    "email": "henriquedecastilhos@gmail.com",
+    "url": "https://twitter.com/castilh0s"
+  },
+  "bin": {
+    "mrandom": "cli.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "yarn lint && jest && codecov"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "chalk": "^2.4.2",
+    "conf": "^6.0.1",
+    "execa": "^2.0.4",
+    "inquirer": "^7.0.0",
+    "inquirer-autocomplete-prompt": "^1.0.1",
+    "meow": "^5.0.0",
+    "minimist": "^1.2.0",
+    "ora": "^3.4.0",
+    "parent-dirs": "^1.0.0",
+    "path-exists": "^4.0.0",
+    "update-notifier": "^3.0.1"
+  },
+  "devDependencies": {
+    "codecov": "^3.5.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  }
+}
