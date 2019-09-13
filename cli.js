@@ -2,29 +2,31 @@
 const meow = require('meow');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
-const utils = require('./src/utils.js');
+const meetupRandom = require('./src/meetup-random');
 
 updateNotifier({ pkg }).notify();
 
-const cli = meow(`
+const cli = meow(
+  `
   Usage
-    $ mrandom [URL] [OPTIONS]
+    $ mrandom -g [GROUP] -e [EVENT] [OPTIONS]
   Options
-    --format, -f     Output format.
-    --ignore, -i     Ignore list (comma separated and case sensitive).
+    --event, -e      Event ID.
+    --group, -g      Group name.
     --total, -t      Total spots available for the meeting (defaults to list size).
     --version, -v    Display installed version.
   Examples
-    $ mrandom https://meetup.com/pt-br/group-name/events/event-id -t 5
-    $ mrandom https://meetup.com/pt-br/group-name/events/event-id -i castilh0s -f '@%s'
-`, {
-  flags: {
-    format: { type: 'string', alias: 'f' },
-    ignore: { type: 'string', alias: 'i' },
-    total: { type: 'string', alias: 't' },
-    version: { type: 'boolean', alias: 'v' },
+    $ mrandom -g group-name -i event-id -t 5
+    $ mrandom -g group-name -i event-id
+`,
+  {
+    flags: {
+      event: { type: 'string', alias: 'e' },
+      group: { type: 'string', alias: 'g' },
+      total: { type: 'string', alias: 't' },
+      version: { type: 'boolean', alias: 'v' },
+    },
   },
-});
+);
 
-// console.log(cli);
-utils.run(cli);
+(async () => await meetupRandom.run(cli))();
