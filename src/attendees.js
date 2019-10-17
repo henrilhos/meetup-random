@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 const axios = require('axios');
 const ora = require('ora');
@@ -31,7 +32,10 @@ class Attendees {
       const { data } = await axios.get(
         `${MEETUP_API_URL}/${this._groupName}/events/${this._eventId}/rsvps`,
       );
-      const attendees = data.map((d) => d.member.name);
+
+      const attendees = data
+        .filter((d) => d.response === 'yes')
+        .map((d) => d.member.name);
 
       return attendees;
     } catch ({ response }) {
@@ -41,19 +45,19 @@ class Attendees {
     }
   }
 
-  static _loading() {
+  _loading() {
     spinner.start();
   }
 
-  static _loadFailed() {
+  _loadFailed() {
     spinner.fail();
   }
 
-  static _loadSucceed() {
+  _loadSucceed() {
     spinner.succeed();
   }
 
-  static _validate(attendees) {
+  _validate(attendees) {
     if (Array.isArray(attendees) && attendees.length > 0 && attendees[0].code) {
       return false;
     }
