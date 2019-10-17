@@ -12,10 +12,12 @@ npm i -g meetup-random
 
 ### Options
 
-`--event`, `-e`: Event ID.
-`--group`, `-g` Group name.
-`--total`, `-t` Total spots available for the meeting (defaults to list size).
-`--version`, `-v` Display installed version.
+| Option            | Description                                                   |
+| ----------------- | ------------------------------------------------------------- |
+| `--event`, `-e`   | Event ID                                                      |
+| `--group`, `-g`   | Group name                                                    |
+| `--total`, `-t`   | Total spots available for the meeting (defaults to list size) |
+| `--version`, `-v` | Display installed version                                     |
 
 ### Examples
 
