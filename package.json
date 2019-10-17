@@ -1,6 +1,6 @@
 {
   "name": "meetup-random",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Randomly select people for Meetup.com meetings.",
   "main": "index.js",
   "license": "MIT",
