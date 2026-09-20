@@ -3,6 +3,16 @@ import ora from 'ora';
 import { AttendeesFetchError, fetchAttendees } from './fetch-attendees.js';
 import { errorMessage } from './utils.js';
 
+const parseTotal = (total) => {
+  const parsed = Number(total);
+
+  if (!Number.isInteger(parsed) || parsed <= 0) {
+    return null;
+  }
+
+  return parsed;
+};
+
 const meetupRandom = async ({ group, event, total }) => {
   const spinner = ora('Loading attendees').start();
 
@@ -25,12 +35,7 @@ const meetupRandom = async ({ group, event, total }) => {
   console.log('');
 
   if (total) {
-    for (let i = 0; i < total; i += 1) {
-      const member = faker.helpers.arrayElement(members);
-      members.splice(members.indexOf(member), 1);
-
-      console.log(member);
-    }
+    faker.helpers.arrayElements(members, total).forEach((member) => console.log(member));
     return;
   }
 
@@ -55,5 +60,15 @@ export const run = async ({ flags }) => {
     return errorMessage('You must provide an event id');
   }
 
-  return meetupRandom({ group, event, total });
+  if (total === undefined) {
+    return meetupRandom({ group, event });
+  }
+
+  const parsedTotal = parseTotal(total);
+
+  if (parsedTotal === null) {
+    return errorMessage('Total must be a positive integer');
+  }
+
+  return meetupRandom({ group, event, total: parsedTotal });
 };
