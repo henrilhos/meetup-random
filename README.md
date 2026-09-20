@@ -22,6 +22,6 @@ npm i -g meetup-random
 ### Examples
 
 ```sh
-$ mrandom -g group-name -i event-id -t 5
-$ mrandom -g group-name -i event-id
+$ mrandom -g group-name -e event-id -t 5
+$ mrandom -g group-name -e event-id
 ```
