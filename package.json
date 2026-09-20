@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "yarn lint && jest && codecov"
+    "test": "npm run lint && jest && codecov"
   },
   "dependencies": {
     "axios": "^0.21.2",
