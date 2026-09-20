@@ -24,7 +24,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && jest && codecov"
+    "test": "npm run lint && jest"
   },
   "dependencies": {
     "@faker-js/faker": "^10.6.0",
@@ -35,7 +35,6 @@
     "update-notifier": "^7.3.1"
   },
   "devDependencies": {
-    "codecov": "^3.5.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.32.0",
