@@ -2,6 +2,7 @@
   "name": "meetup-random",
   "version": "0.1.2",
   "description": "Randomly select people for Meetup.com meetings.",
+  "type": "module",
   "license": "MIT",
   "repository": "henrilhos/meetup-random",
   "bugs": {
@@ -28,10 +29,10 @@
   "dependencies": {
     "@faker-js/faker": "^10.6.0",
     "axios": "^1.20.0",
-    "chalk": "^2.4.2",
-    "meow": "^5.0.0",
-    "ora": "^3.4.0",
-    "update-notifier": "^3.0.1"
+    "chalk": "^6.0.0",
+    "meow": "^14.1.0",
+    "ora": "^9.4.1",
+    "update-notifier": "^7.3.1"
   },
   "devDependencies": {
     "codecov": "^3.5.0",

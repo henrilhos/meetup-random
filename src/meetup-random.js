@@ -1,6 +1,6 @@
-const { faker } = require('@faker-js/faker');
-const Attendees = require('./attendees');
-const { errorMessage } = require('./utils');
+import { faker } from '@faker-js/faker';
+import Attendees from './attendees.js';
+import { errorMessage } from './utils.js';
 
 const meetupRandom = async ({ group, event, total }) => {
   const attendees = new Attendees(group, event);
@@ -32,7 +32,7 @@ const meetupRandom = async ({ group, event, total }) => {
  *
  * @return {Function}
  */
-const run = async ({ flags }) => {
+export const run = async ({ flags }) => {
   const { group, event, total } = flags;
 
   if (!group) {
@@ -45,5 +45,3 @@ const run = async ({ flags }) => {
 
   return meetupRandom({ group, event, total });
 };
-
-module.exports = { run };

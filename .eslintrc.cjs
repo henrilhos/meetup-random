@@ -12,9 +12,13 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2022,
+    sourceType: 'module',
   },
   rules: {
     'no-console': 'off',
+    'import/extensions': ['error', 'ignorePackages', { js: 'always' }],
+    'import/no-unresolved': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

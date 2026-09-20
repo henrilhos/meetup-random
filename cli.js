@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-const meow = require('meow');
-const updateNotifier = require('update-notifier');
-const pkg = require('./package.json');
-const meetupRandom = require('./src/meetup-random');
-
-updateNotifier({ pkg }).notify();
+import meow from 'meow';
+import updateNotifier from 'update-notifier';
+import { run } from './src/meetup-random.js';
 
 const cli = meow(
   `
@@ -20,13 +17,16 @@ const cli = meow(
     $ mrandom -g group-name -i event-id
 `,
   {
+    importMeta: import.meta,
     flags: {
-      event: { type: 'string', alias: 'e' },
-      group: { type: 'string', alias: 'g' },
-      total: { type: 'string', alias: 't' },
-      version: { type: 'boolean', alias: 'v' },
+      event: { type: 'string', shortFlag: 'e' },
+      group: { type: 'string', shortFlag: 'g' },
+      total: { type: 'string', shortFlag: 't' },
+      version: { type: 'boolean', shortFlag: 'v' },
     },
   },
 );
 
-(async () => meetupRandom.run(cli))();
+updateNotifier({ pkg: cli.pkg }).notify();
+
+await run(cli);

@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
-const axios = require('axios');
-const ora = require('ora');
+import axios from 'axios';
+import ora from 'ora';
 
 const MEETUP_API_URL = 'https://api.meetup.com';
 const spinner = ora('Loading attendees');
@@ -66,4 +66,4 @@ class Attendees {
   }
 }
 
-module.exports = Attendees;
+export default Attendees;
