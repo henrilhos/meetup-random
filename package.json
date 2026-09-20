@@ -1,7 +1,7 @@
 {
   "name": "meetup-random",
   "version": "0.1.2",
-  "description": "Randomly select people for Meetup.com meetings.",
+  "description": "CLI to fetch confirmed Meetup event attendees and randomly select participants.",
   "type": "module",
   "license": "MIT",
   "engines": {

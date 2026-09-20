@@ -1,5 +1,7 @@
 # Meetup Random
 
+A CLI to fetch confirmed attendees from a Meetup event and randomly select participants.
+
 ## Installation
 
 ```sh
@@ -16,7 +18,7 @@ npm i -g meetup-random
 | ----------------- | ------------------------------------------------------------- |
 | `--event`, `-e`   | Event ID                                                      |
 | `--group`, `-g`   | Group name                                                    |
-| `--total`, `-t`   | Total spots available for the meeting (defaults to list size) |
+| `--total`, `-t`   | Number of attendees to randomly select (defaults to listing all confirmed attendees) |
 | `--version`, `-v` | Display installed version                                     |
 
 ### Examples
