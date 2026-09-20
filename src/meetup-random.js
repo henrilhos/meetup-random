@@ -1,4 +1,4 @@
-const { random } = require('faker');
+const { faker } = require('@faker-js/faker');
 const Attendees = require('./attendees');
 const { errorMessage } = require('./utils');
 
@@ -14,7 +14,7 @@ const meetupRandom = async ({ group, event, total }) => {
 
   if (total) {
     for (let i = 0; i < total; i += 1) {
-      const member = random.arrayElement(members);
+      const member = faker.helpers.arrayElement(members);
       members.splice(members.indexOf(member), 1);
 
       console.log(member);
