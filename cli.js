@@ -29,4 +29,4 @@ const cli = meow(
   },
 );
 
-(async () => await meetupRandom.run(cli))();
+(async () => meetupRandom.run(cli))();
