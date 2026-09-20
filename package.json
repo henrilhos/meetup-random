@@ -22,6 +22,11 @@
   "bin": {
     "mrandom": "cli.js"
   },
+  "files": [
+    "cli.js",
+    "src",
+    "!src/**/*.test.js"
+  ],
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
