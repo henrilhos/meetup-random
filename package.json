@@ -24,7 +24,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && node --experimental-vm-modules node_modules/.bin/jest"
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run lint && npm run format:check && node --experimental-vm-modules node_modules/.bin/jest"
   },
   "dependencies": {
     "@faker-js/faker": "^10.6.0",
@@ -35,11 +37,14 @@
     "update-notifier": "^7.3.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.5.2",
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.32.0",
-    "jest": "^30.5.2"
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import-x": "^4.17.1",
+    "globals": "^17.12.0",
+    "jest": "^30.5.2",
+    "prettier": "^3.9.8"
   },
   "jest": {
     "coverageDirectory": "./coverage/",

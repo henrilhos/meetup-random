@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import ora from 'ora';
+
 import { AttendeesFetchError, fetchAttendees } from './fetch-attendees.js';
 import { errorMessage } from './utils.js';
 
@@ -35,7 +36,9 @@ const meetupRandom = async ({ group, event, total }) => {
   console.log('');
 
   if (total) {
-    faker.helpers.arrayElements(members, total).forEach((member) => console.log(member));
+    faker.helpers
+      .arrayElements(members, total)
+      .forEach((member) => console.log(member));
     return;
   }
 

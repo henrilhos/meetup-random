@@ -1,5 +1,5 @@
-import { jest } from '@jest/globals';
 import { faker } from '@faker-js/faker';
+import { jest } from '@jest/globals';
 
 const fetchAttendeesMock = jest.fn();
 
@@ -38,7 +38,9 @@ describe('run', () => {
   it('errors when group is missing', async () => {
     await run({ flags: { event: 'e' } });
 
-    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('group name'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining('group name'),
+    );
     expect(fetchAttendeesMock).not.toHaveBeenCalled();
   });
 
@@ -52,14 +54,18 @@ describe('run', () => {
   it('errors on a non-numeric total without calling fetchAttendees', async () => {
     await run({ flags: { group: 'g', event: 'e', total: 'abc' } });
 
-    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('positive integer'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining('positive integer'),
+    );
     expect(fetchAttendeesMock).not.toHaveBeenCalled();
   });
 
   it('errors on a zero or negative total without calling fetchAttendees', async () => {
     await run({ flags: { group: 'g', event: 'e', total: '0' } });
 
-    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('positive integer'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining('positive integer'),
+    );
     expect(fetchAttendeesMock).not.toHaveBeenCalled();
   });
 
@@ -68,7 +74,12 @@ describe('run', () => {
 
     await run({ flags: { group: 'g', event: 'e' } });
 
-    expect(logSpy.mock.calls.map(([arg]) => arg)).toEqual(['', 'Ann', 'Bob', 'Cid']);
+    expect(logSpy.mock.calls.map(([arg]) => arg)).toEqual([
+      '',
+      'Ann',
+      'Bob',
+      'Cid',
+    ]);
   });
 
   it('prints a random subset of the requested size when total is given', async () => {
@@ -81,16 +92,22 @@ describe('run', () => {
   });
 
   it('shows a friendly error when fetchAttendees fails with AttendeesFetchError', async () => {
-    fetchAttendeesMock.mockRejectedValue(new MockAttendeesFetchError('Event not found'));
+    fetchAttendeesMock.mockRejectedValue(
+      new MockAttendeesFetchError('Event not found'),
+    );
 
     await run({ flags: { group: 'g', event: 'e' } });
 
-    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('Event not found'));
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining('Event not found'),
+    );
   });
 
   it('rethrows unexpected errors instead of swallowing them', async () => {
     fetchAttendeesMock.mockRejectedValue(new Error('boom'));
 
-    await expect(run({ flags: { group: 'g', event: 'e' } })).rejects.toThrow('boom');
+    await expect(run({ flags: { group: 'g', event: 'e' } })).rejects.toThrow(
+      'boom',
+    );
   });
 });

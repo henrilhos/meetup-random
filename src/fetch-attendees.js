@@ -6,7 +6,9 @@ export class AttendeesFetchError extends Error {}
 
 export const fetchAttendees = async (group, event) => {
   try {
-    const { data } = await axios.get(`${MEETUP_API_URL}/${group}/events/${event}/rsvps`);
+    const { data } = await axios.get(
+      `${MEETUP_API_URL}/${group}/events/${event}/rsvps`,
+    );
 
     return data.filter((d) => d.response === 'yes').map((d) => d.member.name);
   } catch (err) {

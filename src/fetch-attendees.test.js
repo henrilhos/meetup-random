@@ -6,7 +6,8 @@ jest.unstable_mockModule('axios', () => ({
   default: { get: getMock },
 }));
 
-const { fetchAttendees, AttendeesFetchError } = await import('./fetch-attendees.js');
+const { fetchAttendees, AttendeesFetchError } =
+  await import('./fetch-attendees.js');
 
 beforeEach(() => {
   getMock.mockReset();
@@ -22,22 +23,35 @@ describe('fetchAttendees', () => {
       ],
     });
 
-    await expect(fetchAttendees('group', 'event')).resolves.toEqual(['Ann', 'Cid']);
+    await expect(fetchAttendees('group', 'event')).resolves.toEqual([
+      'Ann',
+      'Cid',
+    ]);
   });
 
   it('throws with the API error message when the request fails with a structured error payload', async () => {
     getMock.mockRejectedValue({
-      response: { data: { errors: [{ code: 'not_found', message: 'Event not found' }] } },
+      response: {
+        data: { errors: [{ code: 'not_found', message: 'Event not found' }] },
+      },
     });
 
-    await expect(fetchAttendees('group', 'event')).rejects.toThrow(AttendeesFetchError);
-    await expect(fetchAttendees('group', 'event')).rejects.toThrow('Event not found');
+    await expect(fetchAttendees('group', 'event')).rejects.toThrow(
+      AttendeesFetchError,
+    );
+    await expect(fetchAttendees('group', 'event')).rejects.toThrow(
+      'Event not found',
+    );
   });
 
   it('throws a generic message when the request fails without a response (network error)', async () => {
     getMock.mockRejectedValue(new Error('timeout of 1000ms exceeded'));
 
-    await expect(fetchAttendees('group', 'event')).rejects.toThrow(AttendeesFetchError);
-    await expect(fetchAttendees('group', 'event')).rejects.toThrow('Failed to load attendees');
+    await expect(fetchAttendees('group', 'event')).rejects.toThrow(
+      AttendeesFetchError,
+    );
+    await expect(fetchAttendees('group', 'event')).rejects.toThrow(
+      'Failed to load attendees',
+    );
   });
 });
