@@ -1,13 +1,25 @@
 import { faker } from '@faker-js/faker';
-import Attendees from './attendees.js';
+import ora from 'ora';
+import { AttendeesFetchError, fetchAttendees } from './fetch-attendees.js';
 import { errorMessage } from './utils.js';
 
 const meetupRandom = async ({ group, event, total }) => {
-  const attendees = new Attendees(group, event);
-  const members = await attendees.getAttendees();
+  const spinner = ora('Loading attendees').start();
 
-  if (!members) {
-    return;
+  let members;
+
+  try {
+    members = await fetchAttendees(group, event);
+    spinner.succeed();
+  } catch (err) {
+    spinner.fail();
+
+    if (err instanceof AttendeesFetchError) {
+      errorMessage(err.message);
+      return;
+    }
+
+    throw err;
   }
 
   console.log('');
