@@ -4,6 +4,9 @@
   "description": "Randomly select people for Meetup.com meetings.",
   "type": "module",
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "repository": "henrilhos/meetup-random",
   "bugs": {
     "url": "https://github.com/henrilhos/meetup-random/issues"
